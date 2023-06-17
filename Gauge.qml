@@ -159,8 +159,9 @@ Item {
 
         Behavior on value {
           SmoothedAnimation {
+            id: animation
             velocity: 0.03
-            duration: 1000
+            duration: 2000
           }
         }
 
@@ -190,12 +191,50 @@ Item {
                  }
     }
 
+    Timer {
+      id: gaugeTimer
+      interval: 50
+      repeat: true
+      running: false
+
+      onTriggered: {
+        gaugeItem.value = Math.max(gaugeItem.value - 0.03, 0)
+        if (gaugeItem.value === 0) {
+          gaugeTimer.stop()
+        }
+      }
+    }
+
+    property bool isShiftPressed: false
+
     Keys.onPressed: event => {
+                      // @disable-check M127
+                      isShiftPressed ? animation.velocity = 0.10 : animation.velocity = 0.03
+
                       if (event.key === Qt.Key_W) {
                         gaugeItem.value = Math.min(gaugeItem.value + 0.03, 1)
-                      } else if (event.key === Qt.Key_S) {
-                        gaugeItem.value = Math.max(gaugeItem.value - 0.03, 0)
+                        console.log("Slow AF")
+                        gaugeTimer.stop()
+                      }
+
+                      if ((event.key === Qt.Key_W)
+                          && (event.modifiers & Qt.ShiftModifier)) {
+                        isShiftPressed = true
+                        gaugeItem.value = Math.min(gaugeItem.value + 0.10, 1)
+                        console.log("BOOOOOSTT")
+                        gaugeTimer.stop()
                       }
                     }
+
+    Keys.onReleased: event => {
+                       if (event.key === Qt.Key_W) {
+                         gaugeTimer.start()
+                       }
+
+                       if ((event.key === Qt.Key_W)
+                           && (event.modifiers & Qt.ShiftModifier)) {
+                         gaugeTimer.start()
+                       }
+                     }
   }
 }
