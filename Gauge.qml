@@ -147,6 +147,17 @@ Item {
         }
       }
 
+      Model {
+        y: separation * 100 + 10
+        source: "#Rectangle"
+        scale: Qt.vector3d(0.8, 0.2, 0.8)
+        eulerRotation.x: -90
+
+        materials: PrincipledMaterial {
+          baseColor: "#808080"
+        }
+      }
+
       Node {
         id: gaugeItem
 
@@ -227,12 +238,11 @@ Item {
                     }
 
     Keys.onReleased: event => {
-                       if (event.key === Qt.Key_W) {
-                         gaugeTimer.start()
+                       if (event.key === Qt.Key_Shift) {
+                         isShiftPressed = false
                        }
 
-                       if ((event.key === Qt.Key_W)
-                           && (event.modifiers & Qt.ShiftModifier)) {
+                       if (event.key === Qt.Key_W) {
                          gaugeTimer.start()
                        }
                      }
