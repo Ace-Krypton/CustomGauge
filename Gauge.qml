@@ -94,6 +94,24 @@ Item {
       }
 
       Model {
+        position: Qt.vector3d(0, 40, 160)
+        y: separation * 60 + 20
+        source: "#Rectangle"
+        scale: Qt.vector3d(0.9, 0.54, 0.8)
+        eulerRotation.x: -90
+
+        materials: PrincipledMaterial {
+          baseColor: "#808080"
+        }
+
+        Text {
+          text: qsTr("text")
+          font.pointSize: 30
+          anchors.centerIn: parent
+        }
+      }
+
+      Model {
         y: -35 - separation * 100
         source: "#Sphere"
         scale: Qt.vector3d(1.6, 0.2, 1.6)
@@ -144,17 +162,6 @@ Item {
 
         materials: PrincipledMaterial {
           baseColor: "#b0b0b0"
-        }
-      }
-
-      Model {
-        y: separation * 100 + 10
-        source: "#Rectangle"
-        scale: Qt.vector3d(0.8, 0.2, 0.8)
-        eulerRotation.x: -90
-
-        materials: PrincipledMaterial {
-          baseColor: "#808080"
         }
       }
 
