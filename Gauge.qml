@@ -102,10 +102,21 @@ Item {
 
         materials: PrincipledMaterial {
           baseColor: "#808080"
+          alphaMode: PrincipledMaterial.Blend
         }
+      }
+
+      Model {
+        position: Qt.vector3d(0, 40, 160)
+        y: separation * 60 + 28
+        source: "#Rectangle"
+        scale: Qt.vector3d(0.9, 0.54, 10)
+        eulerRotation.x: -90
 
         Text {
-          text: qsTr("text")
+          id: digitalSpeed
+          color: "white"
+          text: (gaugeItem.value * 260).toFixed(0)
           font.pointSize: 30
           anchors.centerIn: parent
         }
