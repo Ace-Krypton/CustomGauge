@@ -102,7 +102,6 @@ Item {
 
         materials: PrincipledMaterial {
           baseColor: "#808080"
-          alphaMode: PrincipledMaterial.Blend
         }
       }
 
@@ -115,7 +114,7 @@ Item {
 
         Text {
           id: digitalSpeed
-          color: "white"
+          color: "beige"
           text: (gaugeItem.value * 260).toFixed(0)
           font.pointSize: 30
           anchors.centerIn: parent
@@ -238,7 +237,7 @@ Item {
 
     Keys.onPressed: event => {
                       // @disable-check M127
-                      isShiftPressed ? animation.velocity = 0.10 : animation.velocity = 0.03
+                      isShiftPressed ? animation.velocity = 0.15 : animation.velocity = 0.03
 
                       if (event.key === Qt.Key_W) {
                         gaugeItem.value = Math.min(gaugeItem.value + 0.03, 1)
@@ -249,7 +248,7 @@ Item {
                       if ((event.key === Qt.Key_W)
                           && (event.modifiers & Qt.ShiftModifier)) {
                         isShiftPressed = true
-                        gaugeItem.value = Math.min(gaugeItem.value + 0.10, 1)
+                        gaugeItem.value = Math.min(gaugeItem.value + 0.15, 1)
                         console.log("BOOOOOSTT")
                         gaugeTimer.stop()
                       }
