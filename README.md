@@ -2,6 +2,10 @@
 
 This code represents a 3D speedometer implemented using the QtQuick framework. The speedometer consists of a graphical representation of a speed gauge, a needle indicating the speed, and a digital speed display.
 
+<div align="center">
+  <img src="https://i.ibb.co/Dr2xgy2/ezgif-4-176bacf1a0.gif" alt="Speedometer GIF">
+</div>
+
 ## Usage
 
 Once the application is running, you can interact with the speedometer using the following controls:
